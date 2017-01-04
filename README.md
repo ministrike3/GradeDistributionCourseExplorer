@@ -16,8 +16,11 @@ http://nkpatel6.web.engr.illinois.edu/
 
 ##Future Features
 
-I originally came up with this idea because I wanted to know which advanced composition class was the easiest. So, I'd like to create a nav bar that lets to sort by either Gen-Ed requirement or by subject. The data is already included in my output CSV file; this is just my first foray into making an actual website so I was unsure of how to do it. 
+So, I'd like to create a nav bar that lets to sort by either Gen-Ed requirement or by subject. 
 
-The second feature I wanted to add was the ability to click on a class (say, ECE120) and see grade distributions by professor. This way, for classes like CHEM102, people would be able to objectively decide which professor is harsher or more lenient then the other. 
+Click on class and see grade distributions by professor. 
 
-I would also like to make the site (and the table) look much prettier! 
+Combine data from multiple semesters rather then just the one included rn
+
+Hit the UIUC course API to get the credit hours of courses so i can filter out 0/1/2 CH courses that are either major restricted or otherwise not useful for the general population 
+

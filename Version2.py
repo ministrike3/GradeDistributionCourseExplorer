@@ -115,7 +115,12 @@ print(z)
 
 with open('30-F-15.csv',encoding='UTF-16') as csv123file:
     with open('exit2.csv', 'w', newline='') as open123file:
-        webpage=open('webpage.html','w')
+        webpage=open('index.html','w')
+        acphtml=open('acp.html', 'w')
+        humhtml=open('hum.html', 'w')
+        ssbshtml=open('ssbs.html', 'w')
+        cnwhtml=open('cnw.html', 'w')
+        cwhtml=open('cw.html', 'w')
         wrapper = """ <tr>
         <td class="lalign">%s</td>
         <td>%d</td>
@@ -138,6 +143,14 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
 </head>
 
 <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
  <div id="wrapper">
   <h1>Grade Distribution Course Explorer</h1>
 
@@ -153,9 +166,195 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
     </thead>
     <tbody>""")
 
+        acphtml.write("""<!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>ACP Classes Grade Distribution Explorer</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+          <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+          <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        </head>
 
+        <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
+         <div id="wrapper">
+          <h1>ACP Classes Grade Distribution Explorer</h1>
 
+          <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th><span>Class</span></th>
+                <th><span>Total Students</span></th>
+                <th><span>Credit Hours</span></th>
+                <th><span>Percent A+/A</span></th>
+                <th><span>Percent A+/A/A-</span></th>
+              </tr>
+            </thead>
+            <tbody>""")
 
+        humhtml.write("""<!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>Humanities and the Arts Grade Distribution Explorer</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+          <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+          <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        </head>
+
+        <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
+         <div id="wrapper">
+          <h1>Humanities and the Arts Grade Distribution Explorer</h1>
+
+          <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th><span>Class</span></th>
+                <th><span>Total Students</span></th>
+                <th><span>Credit Hours</span></th>
+                <th><span>Percent A+/A</span></th>
+                <th><span>Percent A+/A/A-</span></th>
+              </tr>
+            </thead>
+            <tbody>""")
+
+        ssbshtml.write("""<!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>Social/Behavioral Classes Grade Distribution Course Explorer</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+          <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+          <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        </head>
+
+        <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
+         <div id="wrapper">
+          <h1>Social/Behavioral Classes Grade Distribution Explorer</h1>
+
+          <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th><span>Class</span></th>
+                <th><span>Total Students</span></th>
+                <th><span>Credit Hours</span></th>
+                <th><span>Percent A+/A</span></th>
+                <th><span>Percent A+/A/A-</span></th>
+              </tr>
+            </thead>
+            <tbody>""")
+
+        cnwhtml.write("""<!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>Non-Western Distribution Course Explorer</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+          <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+          <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        </head>
+
+        <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
+
+         <div id="wrapper">
+          <h1>Non-Western Distribution Course Explorer</h1>
+
+          <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th><span>Class</span></th>
+                <th><span>Total Students</span></th>
+                <th><span>Credit Hours</span></th>
+                <th><span>Percent A+/A</span></th>
+                <th><span>Percent A+/A/A-</span></th>
+              </tr>
+            </thead>
+            <tbody>""")
+        cwhtml.write("""<!doctype html>
+        <html lang="en-US">
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="Content-Type" content="text/html">
+          <title>Cultural Western Grade Distribution Course Explorer</title>
+          <meta name="author" content="Jake Rocheleau">
+          <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+          <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+          <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+          <script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+        </head>
+
+        <body>
+<ul>
+    <li><a class="active" href="./index.html">All</a></li>
+    <li><a href="./acp.html">ACP</a></li>
+    <li><a href="./hum.html">Humanities and the Arts</a></li>
+    <li><a href="./ssbs.html">Social/Behavioral</a></li>
+    <li><a href="./cw.html">Western</a></li>
+    <li><a href="./cnw.html">Non-Western</a></li>
+</ul>
+         <div id="wrapper">
+          <h1>Cultural Western Grade Distribution Course Explorer</h1>
+
+          <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+              <tr>
+                <th><span>Class</span></th>
+                <th><span>Total Students</span></th>
+                <th><span>Credit Hours</span></th>
+                <th><span>Percent A+/A</span></th>
+                <th><span>Percent A+/A/A-</span></th>
+              </tr>
+            </thead>
+            <tbody>""")
         fieldnames = ['Course Title','Course Subject', 'A+', 'A', 'Total 4.0', 'Total A', 'Total Kids', 'Percent 4.0', 'Percent A', 'ACP', 'HUM', 'SSBS', 'CW', 'CNW', 'Credit Hours']
         writer = csv.DictWriter(open123file,fieldnames=fieldnames)
         writer.writeheader()
@@ -206,7 +405,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                     versuspercent4 = versustotal4 / versustotalkids
                     versuspercentA = versustotalA / versustotalkids
                     actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/2015/fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
-                    print(actuallink)
+                    print(versus)
 
                     credithoururl = urllib.request.urlopen(actuallink).read()
                     creditsoup = BeautifulSoup(credithoururl, "lxml")
@@ -214,13 +413,22 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                     letter = letters[0]
                     stringified = str(letter)
                     credithours = stringified[13]
-                    print(credithours)
 
                     writer.writerow({'Course Title': versus, 'Course Subject': versusSubject, 'A+': versusAplus, 'A': versusA,
                                      'Total 4.0': versustotal4, 'Total A': versustotalA, 'Total Kids': versustotalkids,
                                      'Percent 4.0': versuspercent4, 'Percent A': versuspercentA, 'ACP': isACP, 'HUM': isHUM,
                                      'SSBS': isSSBS, 'CW': isCW, 'CNW': isCNW, 'Credit Hours': credithours})
                     webout= wrapper % (versus, versustotalkids, credithours, versuspercent4, versuspercentA)
+                    if isACP=='Yes':
+                        acphtml.write(webout)
+                    if isHUM=='Yes':
+                        humhtml.write(webout)
+                    if isSSBS=='Yes':
+                        ssbshtml.write(webout)
+                    if isCNW=='Yes':
+                        cnwhtml.write(webout)
+                    if isCW=='Yes':
+                        cwhtml.write(webout)
                     webpage.write(webout)
                     webpage.write("\n")
                     versus = checking_course
@@ -246,4 +454,67 @@ $(function(){
 </html>"""
 )
 
+acphtml.write(
+    """    </tbody>
+  </table>
+ </div>
+<script type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter();
+});
+</script>
+</body>
+</html>"""
+)
 
+humhtml.write(
+    """    </tbody>
+  </table>
+ </div>
+<script type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter();
+});
+</script>
+</body>
+</html>"""
+)
+
+ssbshtml.write(
+    """    </tbody>
+  </table>
+ </div>
+<script type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter();
+});
+</script>
+</body>
+</html>"""
+)
+
+cnwhtml.write(
+    """    </tbody>
+  </table>
+ </div>
+<script type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter();
+});
+</script>
+</body>
+</html>"""
+)
+
+cwhtml.write(
+    """    </tbody>
+  </table>
+ </div>
+<script type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter();
+});
+</script>
+</body>
+</html>"""
+)

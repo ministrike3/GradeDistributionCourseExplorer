@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 
 acpurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=ACP&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
-acpsoup = BeautifulSoup(acpurl)
+acpsoup = BeautifulSoup(acpurl,"lxml")
 letters = acpsoup.find_all('a')
 links=[]
 x=0
@@ -24,7 +24,7 @@ for clas in classes:
 print(x)
 
 humurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=HUM&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
-humsoup = BeautifulSoup(humurl)
+humsoup = BeautifulSoup(humurl, "lxml")
 humletters = humsoup.find_all('a')
 humlinks=[]
 z=0
@@ -45,7 +45,7 @@ for clas in humclasses:
 print(z)
 
 ssbsurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=SBS&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
-ssbssoup = BeautifulSoup(ssbsurl)
+ssbssoup = BeautifulSoup(ssbsurl, "lxml")
 ssbsletters = ssbssoup.find_all('a')
 ssbslinks=[]
 z=0
@@ -68,7 +68,7 @@ print(z)
 
 #THIS NEXT PART IS CNW I WAS TOO LAZY TO CHANGE VARIABLES
 ssbsurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=CNW&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
-ssbssoup = BeautifulSoup(ssbsurl)
+ssbssoup = BeautifulSoup(ssbsurl , "lxml")
 ssbsletters = ssbssoup.find_all('a')
 ssbslinks=[]
 z=0
@@ -90,7 +90,7 @@ print(z)
 
 #THIS NEXT PART IS Western I WAS TOO LAZY TO CHANGE VARIABLES
 ssbsurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=CW&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
-ssbssoup = BeautifulSoup(ssbsurl)
+ssbssoup = BeautifulSoup(ssbsurl, "lxml")
 ssbsletters = ssbssoup.find_all('a')
 ssbslinks=[]
 z=0
@@ -119,6 +119,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
         wrapper = """ <tr>
         <td class="lalign">%s</td>
         <td>%d</td>
+        <td>%s</td>
         <td>%f</td>
         <td>%f</td>
       </tr>"""
@@ -145,6 +146,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
       <tr>
         <th><span>Class</span></th>
         <th><span>Total Students</span></th>
+        <th><span>Credit Hours</span></th>
         <th><span>Percent A+/A</span></th>
         <th><span>Percent A+/A/A-</span></th>
       </tr>
@@ -154,13 +156,14 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
 
 
 
-        fieldnames = ['Course Title','Course Subject', 'A+', 'A', 'Total 4.0', 'Total A', 'Total Kids', 'Percent 4.0', 'Percent A', 'ACP', 'HUM', 'SSBS', 'CW', 'CNW']
+        fieldnames = ['Course Title','Course Subject', 'A+', 'A', 'Total 4.0', 'Total A', 'Total Kids', 'Percent 4.0', 'Percent A', 'ACP', 'HUM', 'SSBS', 'CW', 'CNW', 'Credit Hours']
         writer = csv.DictWriter(open123file,fieldnames=fieldnames)
         writer.writeheader()
 
         reader = csv.DictReader(csv123file)
         versus = 'AAS100'
         versusSubject= 'AAS'
+        versusNumber= '100'
         versusAplus=0
         versusA=0
         versusAminus = 0
@@ -202,15 +205,27 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                             isCW = 'Yes'
                     versuspercent4 = versustotal4 / versustotalkids
                     versuspercentA = versustotalA / versustotalkids
+                    actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/2015/fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
+                    print(actuallink)
+
+                    credithoururl = urllib.request.urlopen(actuallink).read()
+                    creditsoup = BeautifulSoup(credithoururl, "lxml")
+                    letters = creditsoup.find_all('credithours')
+                    letter = letters[0]
+                    stringified = str(letter)
+                    credithours = stringified[13]
+                    print(credithours)
+
                     writer.writerow({'Course Title': versus, 'Course Subject': versusSubject, 'A+': versusAplus, 'A': versusA,
                                      'Total 4.0': versustotal4, 'Total A': versustotalA, 'Total Kids': versustotalkids,
                                      'Percent 4.0': versuspercent4, 'Percent A': versuspercentA, 'ACP': isACP, 'HUM': isHUM,
-                                     'SSBS': isSSBS, 'CW': isCW, 'CNW': isCNW})
-                    webout= wrapper % (versus, versustotalkids, versuspercent4, versuspercentA)
+                                     'SSBS': isSSBS, 'CW': isCW, 'CNW': isCNW, 'Credit Hours': credithours})
+                    webout= wrapper % (versus, versustotalkids, credithours, versuspercent4, versuspercentA)
                     webpage.write(webout)
                     webpage.write("\n")
                     versus = checking_course
                     versusSubject = row['Course Subject']
+                    versusNumber = row['Course Number']
                     versusAplus = int(row['A+'])
                     versusA = int(row['A'])
                     versusAminus = int(row['A-'])
@@ -230,3 +245,5 @@ $(function(){
 </body>
 </html>"""
 )
+
+

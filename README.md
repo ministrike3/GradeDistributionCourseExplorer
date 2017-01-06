@@ -24,9 +24,9 @@ Click on class and see grade distributions by professor.
 
 ##Changelog
 
-**1/5/17: **Each course number is now linked to the course explorer site so visitors can navigate there for more info
+**1/5/17:**Each course number is now linked to the course explorer site so visitors can navigate there for more info
 
-**1/5/17: **Added a column for the names of classes, not just course numbers. 
+**1/5/17:**Added a column for the names of classes, not just course numbers. 
 
 **1/5/17:** Added new pages to the site + a navigation bar to allow people to look at classes that fulfill certain Gen-Ed requirements
 

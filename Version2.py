@@ -122,7 +122,8 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
         cnwhtml=open('cnw.html', 'w')
         cwhtml=open('cw.html', 'w')
         wrapper = """ <tr>
-        <td class="lalign">%s</td>
+        <td class="lalign"><a href= "%s">%s</a></td>
+        <td>%s</td>
         <td>%d</td>
         <td>%s</td>
         <td>%f</td>
@@ -158,6 +159,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
     <thead>
       <tr>
         <th><span>Class</span></th>
+        <th><span>Class Title</span></th>
         <th><span>Total Students</span></th>
         <th><span>Credit Hours</span></th>
         <th><span>Percent A+/A</span></th>
@@ -196,6 +198,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
             <thead>
               <tr>
                 <th><span>Class</span></th>
+                <th><span>Class Title</span></th>
                 <th><span>Total Students</span></th>
                 <th><span>Credit Hours</span></th>
                 <th><span>Percent A+/A</span></th>
@@ -234,6 +237,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
             <thead>
               <tr>
                 <th><span>Class</span></th>
+                <th><span>Class Title</span></th>
                 <th><span>Total Students</span></th>
                 <th><span>Credit Hours</span></th>
                 <th><span>Percent A+/A</span></th>
@@ -272,6 +276,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
             <thead>
               <tr>
                 <th><span>Class</span></th>
+                <th><span>Class Title</span></th>
                 <th><span>Total Students</span></th>
                 <th><span>Credit Hours</span></th>
                 <th><span>Percent A+/A</span></th>
@@ -311,6 +316,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
             <thead>
               <tr>
                 <th><span>Class</span></th>
+                <th><span>Class Title</span></th>
                 <th><span>Total Students</span></th>
                 <th><span>Credit Hours</span></th>
                 <th><span>Percent A+/A</span></th>
@@ -348,6 +354,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
             <thead>
               <tr>
                 <th><span>Class</span></th>
+                <th><span>Class Title</span></th>
                 <th><span>Total Students</span></th>
                 <th><span>Credit Hours</span></th>
                 <th><span>Percent A+/A</span></th>
@@ -363,6 +370,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
         versus = 'AAS100'
         versusSubject= 'AAS'
         versusNumber= '100'
+        versusClassTitle= 'Intro Asian American Studies'
         versusAplus=0
         versusA=0
         versusAminus = 0
@@ -418,7 +426,9 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                                      'Total 4.0': versustotal4, 'Total A': versustotalA, 'Total Kids': versustotalkids,
                                      'Percent 4.0': versuspercent4, 'Percent A': versuspercentA, 'ACP': isACP, 'HUM': isHUM,
                                      'SSBS': isSSBS, 'CW': isCW, 'CNW': isCNW, 'Credit Hours': credithours})
-                    webout= wrapper % (versus, versustotalkids, credithours, versuspercent4, versuspercentA)
+
+                    courseLink='https://courses.illinois.edu/schedule/2017/spring/'+ versusSubject + '/' + versusNumber
+                    webout= wrapper % (courseLink,versus, versusClassTitle, versustotalkids, credithours, versuspercent4, versuspercentA)
                     if isACP=='Yes':
                         acphtml.write(webout)
                     if isHUM=='Yes':
@@ -434,6 +444,7 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                     versus = checking_course
                     versusSubject = row['Course Subject']
                     versusNumber = row['Course Number']
+                    versusClassTitle = row['Course Title']
                     versusAplus = int(row['A+'])
                     versusA = int(row['A'])
                     versusAminus = int(row['A-'])

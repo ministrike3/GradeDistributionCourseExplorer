@@ -17,7 +17,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 html { overflow-y: scroll; }
 body {
-  /*background: #eee url('bg.png'); /* http://subtlepatterns.com/weave/ */
+  background: #eee url('bg.png');
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 62.5%;
   line-height: 1;
@@ -63,13 +63,14 @@ h1 {
 
 
 /** page structure **/
+
 #wrapper {
   display: block;
-  width: 850px;
-  background: #fff;
+  width: 1000px;
+  background: #fff9e6;
   margin: 0 auto;
   padding: 10px 17px;
-  -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.35);
+  -webkit-box-shadow: 2px 2px 2px -3px rgba(0,0,0,0.1);
 }
 
 #keywords {
@@ -89,9 +90,10 @@ h1 {
   padding-left: 42px;
 }
 #keywords thead tr th span { 
-  padding-right: 20px;
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
+    padding-right: 20px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    text-decoration: none ;
 }
 
 #keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown {
@@ -110,11 +112,17 @@ h1 {
   color: #555;
 }
 #keywords tbody tr td {
-  text-align: center;
-  padding: 15px 10px;
+    text-align: center;
+    padding: 15px 10px;
+    text-decoration: none ;
 }
 #keywords tbody tr td.lalign {
-  text-align: left;
+    text-align: center;
+}
+
+#keywords tbody tr td.lalign a{
+    text-align: center;
+    color: #585858;
 }
 
 ul {
@@ -123,6 +131,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    font-size: 150%;
 }
 
 li {
@@ -140,3 +149,24 @@ li a {
 li a:hover {
     background-color: #111;
 }
+
+.row-number {
+  width: 20%;
+}
+.row-name {
+  width: 40%;
+}
+.row-kids {
+  width: 10%;
+}
+.row-credithours {
+  width: 10%;
+}
+
+.row-fourpointo {
+  width: 10%;
+}
+.row-a {
+  width: 10%;
+}
+

@@ -2,6 +2,49 @@ import csv
 from bs4 import BeautifulSoup
 import urllib.request
 
+
+def k(a,b):
+    def _k(item):
+        return (item[a],item[b])
+    return _k
+
+
+classarray=[]
+listoffiles=['30-F-15.csv','31-S-16.csv','28-S-15.csv']
+for file in listoffiles:
+    x=0
+    with open(file, encoding='latin-1') as csv123file:
+        reader = csv.DictReader(csv123file)
+        for row in reader:
+            tobeappended=[]
+            if x==0:
+                x=x+1
+            elif row['A+']!='N/A':
+                topics=['Course Subject','Course Number', 'Course Title', 'A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F']
+                for item in topics:
+                    tobeappended.append(row[item])
+                tobeappended.append(file[3:7])
+                classarray.append(tobeappended)
+
+classarray=sorted(classarray, key=k(0,1))
+
+for item in classarray:
+    print(item)
+
+
+with open('exittesting.csv', 'w', encoding='latin-1', newline='') as open123file:
+    fieldnames = ['Course Subject','Course Number', 'Course Title', 'A+','A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F', 'Semester']
+    writer = csv.DictWriter(open123file, fieldnames=fieldnames)
+    writer.writeheader()
+    for item in classarray:
+        writer.writerow({'Course Subject': item[0], 'Course Number':item[1], 'Course Title':item[2], 'A+':item[3], 'A':item[4], 'A-':item[5],'B+':item[6],'B':item[7],'B-':item[8],'C+':item[9],'C':item[10],'C-':item[11],'D+':item[12],'D':item[13],'D-':item[14],'F':item[15], 'Semester':item[16]})
+
+
+
+
+#THIS IS WHERE I COMBINED THE 2 different versions for now
+
+
 acpurl = urllib.request.urlopen('https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=ACP&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on').read()
 acpsoup = BeautifulSoup(acpurl,"lxml")
 letters = acpsoup.find_all('a')
@@ -113,7 +156,7 @@ print(z)
 
 
 
-with open('30-F-15.csv',encoding='UTF-16') as csv123file:
+with open('exittesting.csv',encoding='latin-1') as csv123file:
     with open('exit2.csv', 'w', newline='') as open123file:
         webpage=open('index.html','w')
         acphtml=open('acp.html', 'w')
@@ -377,6 +420,8 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
         versustotal4=0
         versustotalA=0
         versustotalkids=0
+        semester = 'S'
+        year = '2016'
         for row in reader:
             y=row['A+']
             if y!='N/A':
@@ -413,6 +458,15 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                     versuspercent4 = versustotal4 / versustotalkids
                     versuspercentA = versustotalA / versustotalkids
                     actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/2015/fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
+                    courseLink = 'https://courses.illinois.edu/schedule/2017/spring/' + versusSubject + '/' + versusNumber
+                    if semester[0]=='F':
+                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/'+year+'/'+'fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
+                        courseLink = 'https://courses.illinois.edu/schedule/'+year+'fall/' + versusSubject + '/' + versusNumber
+
+                    if semester[0]=='S':
+                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/' + 'spring/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
+                        courseLink = 'https://courses.illinois.edu/schedule/' + year + 'spring/' + versusSubject + '/' + versusNumber
+
                     print(versus)
 
                     credithoururl = urllib.request.urlopen(actuallink).read()
@@ -426,8 +480,6 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                                      'Total 4.0': versustotal4, 'Total A': versustotalA, 'Total Kids': versustotalkids,
                                      'Percent 4.0': versuspercent4, 'Percent A': versuspercentA, 'ACP': isACP, 'HUM': isHUM,
                                      'SSBS': isSSBS, 'CW': isCW, 'CNW': isCNW, 'Credit Hours': credithours})
-
-                    courseLink='https://courses.illinois.edu/schedule/2017/spring/'+ versusSubject + '/' + versusNumber
                     webout= wrapper % (courseLink,versus, versusClassTitle, versustotalkids, credithours, versuspercent4, versuspercentA)
                     if isACP=='Yes':
                         acphtml.write(webout)
@@ -451,7 +503,8 @@ with open('30-F-15.csv',encoding='UTF-16') as csv123file:
                     versustotal4 = int(row['A+'])+int(row['A'])
                     versustotalA = int(row['A+'])+int(row['A'])+int(row['A-'])
                     versustotalkids = int(row['A+'])+int(row['A'])+int(row['A-'])+int(row['B+'])+int(row['B'])+int(row['B-'])+int(row['C+'])+int(row['C'])+int(row['C-'])+int(row['D+'])+int(row['D'])+int(row['D-'])+int(row['F'])
-
+                    semester=row['Semester']
+                    year = '20' + semester[2] + semester[3]
 webpage.write(
     """    </tbody>
   </table>

@@ -460,13 +460,12 @@ with open('exittesting.csv',encoding='latin-1') as csv123file:
                     actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/2015/fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
                     courseLink = 'https://courses.illinois.edu/schedule/2017/spring/' + versusSubject + '/' + versusNumber
                     if semester[0]=='F':
-                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/'+year+'/'+'fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
-                        courseLink = 'https://courses.illinois.edu/schedule/'+year+'fall/' + versusSubject + '/' + versusNumber
+                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/'+year+'/fall/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
 
                     if semester[0]=='S':
-                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/' + 'spring/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
-                        courseLink = 'https://courses.illinois.edu/schedule/' + year + 'spring/' + versusSubject + '/' + versusNumber
+                        actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/spring/' + versusSubject + '/' + versusNumber + '.xml?mode=cascade'
 
+                    courseLink = 'https://courses.illinois.edu/schedule/2017/spring/' + versusSubject + '/' + versusNumber
                     print(versus)
 
                     credithoururl = urllib.request.urlopen(actuallink).read()

@@ -127,6 +127,7 @@ htmlstarter="""<!doctype html>
     <li><a href="./ssbs.html">Social/Behavioral</a></li>
     <li><a href="./cw.html">Western</a></li>
     <li><a href="./cnw.html">Non-Western</a></li>
+    <!-- <li id="instructions">Navigate to a GenEd, or click on a course for spots!</li> -->
 </ul>
  <div id="wrapper">
   <h1>%s</h1>

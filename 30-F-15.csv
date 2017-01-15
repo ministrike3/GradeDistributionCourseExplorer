@@ -2698,7 +2698,7 @@ CRN,Course Subject,Course Number,Course Title,Course Section,Sched Type,Term,Pri
 32066,FR,210,Intro to French Lit II,X,LCD,120158,"Reynolds, Felisa V",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 32069,FR,213,French Phonetics,A1,LCD,120158,"Fagyal, Zsuzsanna",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 32079,FR,213,French Phonetics,A2,LCD,120158,"Nicholas, Jessica A",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-29864,FR,323,Maryse Condé,C,LCD,120158,"Reynolds, Felisa V",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+29864,FR,323,Maryse Condï¿½,C,LCD,120158,"Reynolds, Felisa V",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 64611,FR,389,French & Comparative Cinema II,NB,LCD,120158,"Blake, Nancy",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 50258,FR,414,Advanced Grammar and Style,D,LCD,120158,"Mroz, Aurore P",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 29871,FR,419,Techniques in Translation I,PU,LCD,120158,"Fresco, Alain D",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
@@ -2708,7 +2708,7 @@ CRN,Course Subject,Course Number,Course Title,Course Section,Sched Type,Term,Pri
 29911,FR,505,Tchg College&Secondary French,B,LCD,120158,"Toharia Zapata, Cristina",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 41201,FR,529,Sociophonetics of French,X,LCD,120158,"Fagyal, Zsuzsanna",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 56140,FR,543,French Studies,G,LCD,120158,"Mathy, Jean-Philippe R",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-51279,FR,578,Inquiétude ou angoisse: la Fr,NB,LEC,120158,"Blake, Nancy",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+51279,FR,578,Inquiï¿½tude ou angoisse: la Fr,NB,LEC,120158,"Blake, Nancy",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 54366,FSHN,101,Intro Food Science & Nutrition,B,LEC,120158,"Bohn, Dawn M",0,177,0,33,26,12,12,16,4,0,2,0,1,1,3.52
 30232,FSHN,101,Intro Food Science & Nutrition,D,LEC,120158,"Schmidt, Shelly J",8,42,9,7,9,8,6,5,1,2,1,1,0,2,3.38
 30234,FSHN,120,Contemporary Nutrition,A,LCD,120158,"Roach, Rebecca R",0,551,0,0,48,0,0,20,0,0,9,0,3,2,3.8
@@ -6141,5 +6141,3 @@ CRN,Course Subject,Course Number,Course Title,Course Section,Sched Type,Term,Pri
 36638,WLOF,403,Intermediate Wolof I,A,LCD,120158,"Gueye, Mor",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 54945,WRIT,203,Issues in Tutoring Writing,WT,LCD,120158,"Wisniewski, Carolyn",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
 40424,YDSH,101,Beginning Yiddish I,A,LCD,120158,"Feldman, Sara M",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
-46575,YDSH,320,Lit Responses to the Holocaust,N,LCD,120158,"Kaplan, Brett A",3,6,7,2,5,0,0,1,0,0,0,0,0,0,3.56
-36544,ZULU,201,Elementary Zulu I,AL1,LCD,120158,"Madela, Mbhekiseni L",N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A

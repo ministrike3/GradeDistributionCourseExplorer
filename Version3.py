@@ -1,7 +1,7 @@
 import csv
 from bs4 import BeautifulSoup
 import urllib.request
-import requests
+
 
 def k(a,b,c):
     def _k(item):
@@ -29,11 +29,9 @@ for file in listoffiles:
                 classarray.append(tobeappended)
 
 classarray=sorted(classarray, key=k(0,1,2))
-
-
 ###CLASSARRAY IS NOW A SORTED LIST OF CLASSES
+
 itemx = ['','','',0,0,0,0,0,0,0,0,0,0,0,0,0,'']
-data=open('data.txt', 'w')
 newarray=[]
 for course,courseplus1 in zip(classarray,classarray[1:]):
     if (course[0]==courseplus1[0] and course[1]==courseplus1[1] and course[2]==courseplus1[2]):
@@ -53,42 +51,35 @@ for course,courseplus1 in zip(classarray,classarray[1:]):
             itemx[number]=int(courseplus1[number])
         itemx[16] = courseplus1[16]
 
+#For Debugging Purposes
 for item in newarray:
     print(item)
-
-
 
 genedCodes=['ACP','HUM','SBS','CW','CNW']
 classesListedByGened=[]
 
 for code in genedCodes:
-    urlWrapper="""https://courses.illinois.edu/search?year=2017&term=spring&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=%s&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on"""
+    urlWrapper="""https://courses.illinois.edu/search?year=2017&term=fall&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=%s&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on"""
     url=urlWrapper % (code)
     openUrl = urllib.request.urlopen(url).read()
     soup = BeautifulSoup(openUrl,"lxml")
     letters = soup.find_all('a')
-    links=[]
+    courses=[]
     x=0
     for letter in letters:
-        links.append(letter.get('href'))
-    classes=[]
-    for link in links:
+        link = letter.get('href')
         if len(link)>10:
             if link[8]=='s':
-                classes.append(link)
-    courses=[]
-    for clas in classes:
-        x=x+1
-        blank, search123, schedule, year, semester, department, classnumber = clas.split("/")
-        classnumber, junk = classnumber.split('?')
-        actualClass = department + classnumber
-        courses.append(actualClass)
+                x=x+1
+                blank, search123, schedule, year, semester, department, classnumber = link.split("/")
+                classnumber, junk = classnumber.split('?')
+                actualClass = department + classnumber
+                courses.append(actualClass)
     classesListedByGened.append(courses)
     print(x)
 
 for gened in classesListedByGened:
     print(gened)
-
 
 indexhtml = open('index.html', 'w')
 acphtml = open('acp.html', 'w')
@@ -165,8 +156,8 @@ for course in newarray:
     totalFour=course[3]+course[4]
     totalA=course[3]+course[4]+course[5]
     totalKids=course[3]+course[4]+course[5]+course[6]+course[7]+course[8]+course[9]+course[10]+course[11]+course[12]+course[13]+course[14]+course[15]
-    percent4=totalFour/totalKids
-    percentA=totalA/totalKids
+    percent4=totalFour/totalKids*100
+    percentA=totalA/totalKids*100
     year = '20' + course[16][2] + course[16][3]
     if course[16][0] == 'F':
         actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/fall/' + course[0] + '/' + \
@@ -174,13 +165,16 @@ for course in newarray:
     else:
         actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/spring/' + course[0] + '/' + \
                      course[1] + '.xml?mode=cascade'
-    courseLink = 'https://courses.illinois.edu/schedule/2017/spring/' + course[0] + '/' + course[1]
+    courseLink = 'https://courses.illinois.edu/schedule/2017/fall/' + course[0] + '/' + course[1]
     credithoururl = urllib.request.urlopen(actuallink).read()
     creditsoup = BeautifulSoup(credithoururl, "lxml")
     letters = creditsoup.find_all('credithours')
     letter = letters[0]
-    stringified = str(letter)
-    credithours = stringified[13]
+    credithours = str(letter)
+    print(credithours)
+    junk,credithours,junk=credithours.split('>')
+    credithours, junk = credithours.split('h',maxsplit=1)
+    print(credithours)
     tableBlob = htmlwrapper % (courseLink, whichcourse,course[2], totalKids, credithours, percent4, percentA)
     indexhtml.write(tableBlob)
     #ACP
@@ -190,8 +184,6 @@ for course in newarray:
             if whichcourse==item:
                 page.write(tableBlob)
         x=x+1
-
-
 
 for page in listofwebpages:
     page.write("""    </tbody>

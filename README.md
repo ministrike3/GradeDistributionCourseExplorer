@@ -3,7 +3,7 @@
 Get a better GPA: Sort classes by the percent of students that get A's!
 link:
 
-http://nkpatel6.web.engr.illinois.edu/
+http://gradexplorer.tk
 
 ## Current Status
 
@@ -21,7 +21,7 @@ Create a Searchbar to look for specific classes (Please use Control+F for now)
 Click on class and see grade distributions by professor.
 
 ## Changelog
-**1/14/17:** Optimized Python Script (function changed went from O(3n) to O(n) ), edited readme, and updated for Fall 2017
+**3/20/17:** Optimized Python Script (function changed went from O(3n) to O(n) ), edited readme, and updated for Fall 2017
 
 **1/14/17:** Complete overhaul of python script: Did it get faster? Not sure, but its definitely much prettier code that I'm happier with; the old version worked well but was doing lots of unnecessary things (writing to csv, doing things over and over statically rather then in a loop, etc.) Had a few problems, asked around + posted on Stack Overflow. One more overhaul will be done eventually to replace all lists with a dictionary for a much cleaner data cleaning process. 
 

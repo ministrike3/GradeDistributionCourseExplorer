@@ -10,7 +10,7 @@ def k(a,b,c):
 
 
 classarray=[]
-listoffiles=['28-S-15.csv','30-F-15.csv','31-S-16.csv','33-F-16.csv']
+listoffiles=['28-S-15.csv','30-F-15.csv','31-S-16.csv','33-F-16.csv','34-S-17.csv']
 y=0
 
 # this for loop is to combine all four of the csv files into one big array
@@ -71,21 +71,22 @@ classesListedByGened=[]
 
 #here What I'm doing is hitting the course page of each gen-ed type to scrape a list of classes that fulfill that requirement
 for code in genedCodes:
-    urlWrapper="""https://courses.illinois.edu/search?year=2017&term=fall&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=%s&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on"""
+    #urlWrapper="""https://courses.illinois.edu/search?year=2017&term=fall&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=%s&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on"""
+    urlWrapper="""https://courses.illinois.edu/gened/2017/fall/%s"""
     url=urlWrapper % (code)
     openUrl = urllib.request.urlopen(url).read()
-    soup = BeautifulSoup(openUrl,"lxml")
+    soup = BeautifulSoup(openUrl)
     letters = soup.find_all('a')
     courses=[]
     #x is for debugging; its just to check to see how many of each kind of gen-ed codes I have
     x=0
     for letter in letters:
         link = letter.get('href')
-        if len(link)>10:
-            if link[8]=='s':
+        if len(link)>8:
+            if link[0:15]=='/schedule/2017/':
+                print(link)
                 x=x+1
-                blank, search123, schedule, year, semester, department, classnumber = link.split("/")
-                classnumber, junk = classnumber.split('?')
+                blank, schedule, year, semester, department, classnumber = link.split("/")
                 actualClass = department + classnumber
                 courses.append(actualClass)
     classesListedByGened.append(courses)
@@ -191,7 +192,7 @@ for course in summed_class_data:
         actuallink = 'http://courses.illinois.edu/cisapp/explorer/schedule/' + year + '/spring/' + course[0] + '/' + \
                      course[1] + '.xml?mode=cascade'
     credithoururl = urllib.request.urlopen(actuallink).read()
-    creditsoup = BeautifulSoup(credithoururl, "lxml")
+    creditsoup = BeautifulSoup(credithoururl)
     letters = creditsoup.find_all('credithours')
     letter = letters[0]
     credithours = str(letter)

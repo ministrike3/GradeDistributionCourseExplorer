@@ -1,4 +1,5 @@
 import csv
+import getTechElectives
 from bs4 import BeautifulSoup
 import urllib.request
 
@@ -72,10 +73,10 @@ classesListedByGened=[]
 #here What I'm doing is hitting the course page of each gen-ed type to scrape a list of classes that fulfill that requirement
 for code in genedCodes:
     #urlWrapper="""https://courses.illinois.edu/search?year=2017&term=fall&keyword=&keywordType=qs&instructor=&collegeCode=&subjectCode=&creditHour=&degreeAtt=&courseLevel=&genedCode1=%s&genedCode2=&genedCode3=&partOfTerm=&_online=on&_open=on&_evenings=on"""
-    urlWrapper="""https://courses.illinois.edu/gened/2017/fall/%s"""
+    urlWrapper="""https://courses.illinois.edu/gened/2018/spring/%s"""
     url=urlWrapper % (code)
     openUrl = urllib.request.urlopen(url).read()
-    soup = BeautifulSoup(openUrl)
+    soup = BeautifulSoup(openUrl,"html5lib")
     letters = soup.find_all('a')
     courses=[]
     #x is for debugging; its just to check to see how many of each kind of gen-ed codes I have
@@ -83,7 +84,7 @@ for code in genedCodes:
     for letter in letters:
         link = letter.get('href')
         if len(link)>8:
-            if link[0:15]=='/schedule/2017/':
+            if link[0:15]=='/schedule/2018/':
                 print(link)
                 x=x+1
                 blank, schedule, year, semester, department, classnumber = link.split("/")
@@ -92,6 +93,7 @@ for code in genedCodes:
     classesListedByGened.append(courses)
     print(x)
 
+classesListedByGened.append(getTechElectives.get_tech_elective_list())
 #For Monitoring/Debugging Purposes
 for gened in classesListedByGened:
     print(gened)
@@ -103,6 +105,7 @@ humhtml = open('hum.html', 'w')
 ssbshtml = open('ssbs.html', 'w')
 cnwhtml = open('cnw.html', 'w')
 cwhtml = open('cw.html', 'w')
+techhtml=open('tech.html','w')
 # identify the title/headers of the pages 
 indextraits=['Grade Distribution Course Explorer','Grade Distribution Course Explorer']
 acptraits=['ACP Classes Grade Distribution Explorer','ACP Classes Grade Distribution Explorer']
@@ -110,10 +113,11 @@ humtraits=['Humanities and the Arts Grade Distribution Explorer','Humanities and
 cwtraits=['Cultural Western Grade Distribution Course Explorer','Cultural Western Distribution Course Explorer']
 cnwtraits=['Non-Western Distribution Course Explorer','Non-Western Distribution Course Explorer']
 ssbstraits=['Social/Behavioral Classes Grade Distribution Course Explorer','Social/Behavioral Distribution Explorer']
+techtraits=['ECE Tech Electives Grade Distribution Course Explorer','Tech Elective Distribution Explorer']
 
 #put the webpages and their traits in a list for easy looping
-listoftraits=[indextraits,acptraits,humtraits,ssbstraits,cwtraits,cnwtraits]
-listofwebpages=[indexhtml,acphtml,humhtml,ssbshtml,cwhtml,cnwhtml]
+listoftraits=[indextraits,acptraits,humtraits,ssbstraits,cwtraits,cnwtraits,techtraits]
+listofwebpages=[indexhtml,acphtml,humhtml,ssbshtml,cwhtml,cnwhtml,techhtml]
 
 #Wrapper to intialize each html page
 htmlstarter="""<!doctype html>
@@ -196,12 +200,10 @@ for course in summed_class_data:
     letters = creditsoup.find_all('credithours')
     letter = letters[0]
     credithours = str(letter)
-    print(credithours)
     junk,credithours,junk=credithours.split('>')
     credithours, junk = credithours.split('h',maxsplit=1)
-    print(credithours)
     #now create a link to the current page so people can check if there are registration spots open 
-    courseLink = 'https://courses.illinois.edu/schedule/2017/fall/' + course[0] + '/' + course[1]
+    courseLink = 'https://courses.illinois.edu/schedule/2018/spring/' + course[0] + '/' + course[1]
     #fill in the table row wrapper with all the relevant information
     new_table_row = htmlwrapper % (courseLink, whichcourse,course[2], totalKids, credithours, percent4, percentA)
     # write to the index page
